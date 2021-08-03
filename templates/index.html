@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>library service</title>
+    <meta name="description" content="Portfolio for software engineer Eden" />
+    <meta name="author" content="Eden" />
+    <script
+      src="https://kit.fontawesome.com/f4c364e416.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="imgs/favicon.png" />
+    <link rel="stylesheet" href="static/style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+      :root {
+    /* Color */
+    --color-white: #ffffff;
+    --color-light-white: #eeeeee;
+    --color-dark-white: #bdbdbd;
+    --color-pink: #fe918d;
+    --color-dark-pink: #ff6863;
+    --color-dark-grey: #4d4d4d;
+    --color-grey: #616161;
+    --color-light-grey: #7c7979;
+    --color-blue: #73aace;
+    --color-yellow: #fff7d1;
+    --color-orange: #feb546;
+    --color-black: #000000;
+  
+    /* Font size */
+    --font-large: 48px;
+    --font-medium: 28px;
+    --font-regular: 18px;
+    --font-small: 16px;
+    --font-micro: 14px;
+  
+    /* Font weight */
+    --weight-bold: 700;
+    --weight-semi-bold: 600;
+    --weight-regular: 400;
+  
+    /* size */
+    --size-border-radius: 4px;
+  
+    /* Animation */
+    --animation-duration: 300ms;
+  }
+  
+  /* Universal Tags */
+  
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    cursor: default;
+  }
+  
+  a {
+    text-decoration: 0;
+    color: var(--color-white);
+  }
+  
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  button {
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+  
+  /* Typography */
+  h1 {
+    font-size: var(--font-large);
+    font-weight: var(--weight-bold);
+    color: var(--color-black);
+    margin: 16px 0px;
+  }
+  
+  h2 {
+    font-size: var(--font-medium);
+    font-weight: var(--weight-semi-bold);
+    color: var(--color-black);
+    margin: 8px 0;
+  }
+  
+  h3 {
+    font-size: var(--font-regular);
+    font-weight: var(--weight-regular);
+    color: var(--color-black);
+    margin: 8px 0;
+  }
+  
+  p {
+    font-size: var(--font-regular);
+    font-weight: var(--weight-regular);
+    color: var(--color-black);
+    margin: 4px 0;
+  }
+  
+  /* Navbar */
+  
+  #navbar {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+    align-items: center;
+    color: var(--color-white);
+    padding: 16px;
+    transition: all var(--animation-duration) ease-in-out;
+    z-index: 1;
+  }
+  
+  #navbar.navbar--dark {
+    background-color: var(--color-pink);
+    padding: 8px;
+  }
+  .navbar__logo {
+    font-size: var(--font-medium);
+    font-weight: var(--weight-semi-bold);
+  }
+  
+  .navbar__menu {
+    display: flex;
+  }
+  
+  .navbar__menu__item {
+    padding: 8px 12px;
+    margin: 0 4px;
+    color: var(--color-white);
+    cursor: pointer;
+    border-radius: var(--size-border-radius);
+    border: 1px solid transparent;
+  }
+  
+  .navbar__menu__item:hover {
+    border-color: var(--color-white);
+    background-color: var(--color-dark-pink);
+    border-radius: var(--size-border-radius);
+  }
+  
+  .navbar__toggle-btn {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-size: 24px;
+    color: var(--color-white);
+    display: none;
+  }
+  /* Home */
+  
+  #home {
+    background-color: var(--color-pink);
+    padding: 40px;
+    text-align: center;
+    padding-top: 120px;
+  }
+  
+  .home__avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 2px solid var(--color-light-white);
+  }
+  
+  .home__title,
+  .home__description {
+    color: white;
+  }
+  
+  .home__contact {
+    color: var(--color-white);
+    font-size: var(--font-regular);
+    font-weight: var(--weight-bold);
+    margin: 24px;
+    padding: 8px 12px;
+    border: 2px solid var(--color-white);
+    border-radius: var(--size-border-radius);
+  }
+  
+  .home__contact:hover {
+    background-color: var(--color-orange);
+  }
+  
+  /* Section Common */
+  
+  .section {
+    padding: 50px;
+    text-align: center;
+    margin: auto;
+  }
+  
+  .section__container {
+    max-width: 1200px;
+    margin: auto;
+  }
+  /* About */
+  
+  .about__majors {
+    display: flex;
+    justify-content: center;
+    margin: 80px 0;
+  }
+  
+  .major__icon i:hover {
+    color: var(--color-pink);
+    transform: rotate(-30deg) scale(1.1);
+  }
+  
+  .major__icon i {
+    transition: all var(--animation-duration) ease;
+  }
+  
+  .major__icon {
+    width: 170px;
+    height: 170px;
+    line-height: 170px;
+    font-size: 70px;
+    margin: auto;
+    color: var(--color-blue);
+    border: 1px solid var(--color-blue);
+    border-radius: 50%;
+    margin-bottom: 16px;
+  }
+  
+  .major__title,
+  .major__description {
+    color: var(--color-dark-grey);
+  }
+  
+  .major__description {
+    font-size: var(--font-small);
+  }
+  
+  .school {
+    display: flex;
+    align-items: center;
+  }
+  
+  .school__description {
+    margin: 0 16px;
+    text-align: left;
+  }
+  
+  .school__name,
+  .school__major {
+    color: var(--color-light-grey);
+  }
+  
+  .school__name {
+    font-size: var(--font-small);
+  }
+  
+  .school__major {
+    font-size: var(--font-micro);
+  }
+  
+  
+ 
+  
+  /* For below 768px screen width */
+  @media screen and (max-width: 768px) {
+    .navbar__toggle-btn {
+      display: block;
+      font-size: var(--font-medium);
+      top: 16px;
+      right: 16px;
+    }
+  
+    #navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: var(--color-pink);
+    }
+  
+    #navbar.navbar--dark {
+      padding: 16px;
+    }
+  
+    .navbar__menu {
+      flex-direction: column;
+      text-align: center;
+      width: 100%;
+      display: none;
+    }
+  
+    .navbar__menu.open {
+      display: block;
+    }
+  
+    .section {
+      padding: 16px;
+      padding-top: 40px;
+    }
+  
+    .about__majors {
+      flex-direction: column;
+      margin-top: 30px;
+      margin-bottom: 0px;
+    }
+    .major {
+      margin-bottom: 38px;
+    }
+  
+    .skillset {
+      flex-direction: column;
+    }
+    .category__btn {
+      margin: 4px 0;
+      width: 100%;
+    }
+  
+    .project {
+      flex-grow: 1;
+    }
+  
+    .testimonial {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .testimonial__avatar {
+      width: 120px;
+      height: 120px;
+    }
+    .testimonial__avatar: :nth-child(even)
+    .testimonial__avatar: :nth-child(odd) {
+      margin: 0;
+      margin-bottom: 8px;
+    }
+  
+    .testimonial__speech-bubble {
+      order: 1;
+    }
+  
+    .arrow-up {
+      width: 50px;
+      height: 50px;
+      font-size: 30px;
+      line-height: 50px;
+      right: 16px;
+      bottom: 16px;
+    }
+  }
+  
+    </style>
+  </head>
+  <body>
+    <!-- Home -->
+    <section id="home">
+      <i id="library_icon" class="fas fa-hotel fa-5x"></i>
+      <h1 class="home__title">Library Service</h1>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section section__container">
+      <h1>About Service</h1>
+      <div class="about__majors">
+        <div class="major">
+          <a href="search.html">
+          <div class="major__icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+        </a>    
+          <h2 class="major__title">도서관검색</h2>
+          <div class="major__description">도서관 정보나루 등록조서관</br>최근 6개월간 대출순 50위 도서관을 지원합니다</div>
+        </div>
+        </div>
+      </div>
+    </section>
+    <script>
+    
+    </script>
+  </body>
+</html>
+
+
+
